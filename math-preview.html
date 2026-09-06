@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A preview of mathematical typesetting for Caio Azevedo’s research notes.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f3f2ec">
+  <title>LaTeX preview — Caio Azevedo</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="assets/vendor/katex/katex.min.js"></script>
+  <script defer src="assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="assets/math.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="wordmark" href="index.html" aria-label="Caio Azevedo, home">
+        <span class="wordmark-mark" aria-hidden="true">CA</span>
+        <span>Caio Azevedo</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="publications.html">Publications</a>
+        <a class="nav-link active" href="notes.html" aria-current="page">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-shell inner-page math-preview">
+    <header class="page-intro">
+      <a class="text-link math-back" href="notes.html">← Back to notes</a>
+      <p class="eyebrow"><span></span> Typesetting preview</p>
+      <h1>LaTeX preview</h1>
+      <p>A few mathematical examples for future notes, from a symbol in a sentence to a complete derivation.</p>
+    </header>
+
+    <noscript><p>Enable JavaScript to see the rendered equations. Their LaTeX source is available below each example.</p></noscript>
+
+    <section class="math-example" aria-labelledby="example-1">
+      <p class="section-kicker">01</p>
+      <h2 id="example-1">Inline mathematics</h2>
+      <p>Equations can sit naturally in a sentence. A trajectory is a sequence of states \(\mathbf{x}_{1:T}\), and a policy \(\pi_\theta(a_t \mid o_t)\) maps observations to actions.</p>
+      <details class="math-source">
+        <summary>LaTeX source</summary>
+        <pre><code>A policy \(\pi_\theta(a_t \mid o_t)\) maps observations to actions.</code></pre>
+      </details>
+    </section>
+
+    <section class="math-example" aria-labelledby="example-2">
+      <p class="section-kicker">02</p>
+      <h2 id="example-2">An objective, with room to breathe</h2>
+      <p>Display equations give the main idea its own space. Here, two losses are combined with a weighting coefficient.</p>
+      <div class="math-example-equation">
+        \[
+\mathcal{L}(\theta) = \mathcal{L}_{\mathrm{NTP}}(\theta) + \lambda\,\mathcal{L}_{\mathrm{BEV}}(\theta)
+\]
+      </div>
+      <details class="math-source">
+        <summary>LaTeX source</summary>
+        <pre><code>\[
+\mathcal{L}(\theta) = \mathcal{L}_{\mathrm{NTP}}(\theta) + \lambda\,\mathcal{L}_{\mathrm{BEV}}(\theta)
+\]</code></pre>
+      </details>
+    </section>
+
+    <section class="math-example" aria-labelledby="example-3">
+      <p class="section-kicker">03</p>
+      <h2 id="example-3">A derivation, line by line</h2>
+      <p>Aligned expressions keep each step of a calculation easy to follow.</p>
+      <div class="math-example-equation">
+        \[
+\begin{aligned}
+\theta^{\star} &amp;= \arg\min_{\theta}\;\mathcal{L}(\theta) \\
+\mathbf{g}_k &amp;= \nabla_{\theta}\mathcal{L}(\theta_k) \\
+\theta_{k+1} &amp;= \theta_k - \eta\,\mathbf{g}_k
+\end{aligned}
+\]
+      </div>
+      <details class="math-source">
+        <summary>LaTeX source</summary>
+        <pre><code>\[
+\begin{aligned}
+\theta^{\star} &amp;= \arg\min_{\theta}\;\mathcal{L}(\theta) \\
+\mathbf{g}_k &amp;= \nabla_{\theta}\mathcal{L}(\theta_k) \\
+\theta_{k+1} &amp;= \theta_k - \eta\,\mathbf{g}_k
+\end{aligned}
+\]</code></pre>
+      </details>
+    </section>
+
+    <section class="math-example" aria-labelledby="example-4">
+      <p class="section-kicker">04</p>
+      <h2 id="example-4">Vectors and matrices</h2>
+      <p>A planar rotation is a compact example of matrix notation.</p>
+      <div class="math-example-equation">
+        \[
+\underbrace{\begin{bmatrix} x&#x27; \\ y&#x27; \end{bmatrix}}_{\mathbf{x}&#x27;} =
+\underbrace{\begin{bmatrix}
+\cos\phi &amp; -\sin\phi \\
+\sin\phi &amp; \cos\phi
+\end{bmatrix}}_{\mathbf{R}(\phi)}
+\underbrace{\begin{bmatrix} x \\ y \end{bmatrix}}_{\mathbf{x}}
+\]
+      </div>
+      <details class="math-source">
+        <summary>LaTeX source</summary>
+        <pre><code>\[
+\underbrace{\begin{bmatrix} x&#x27; \\ y&#x27; \end{bmatrix}}_{\mathbf{x}&#x27;} =
+\underbrace{\begin{bmatrix}
+\cos\phi &amp; -\sin\phi \\
+\sin\phi &amp; \cos\phi
+\end{bmatrix}}_{\mathbf{R}(\phi)}
+\underbrace{\begin{bmatrix} x \\ y \end{bmatrix}}_{\mathbf{x}}
+\]</code></pre>
+      </details>
+    </section>
+
+    <section class="math-example" aria-labelledby="example-5">
+      <p class="section-kicker">05</p>
+      <h2 id="example-5">Probability and integrals</h2>
+      <p>Fractions, integrals, and subscripts share the same typography as the simpler expressions above.</p>
+      <div class="math-example-equation">
+        $$
+\begin{aligned}
+p(\theta \mid \mathcal{D})
+&amp;= \frac{p(\mathcal{D} \mid \theta)\,p(\theta)}{p(\mathcal{D})} \\
+p(\mathcal{D})
+&amp;= \int p(\mathcal{D} \mid \theta)\,p(\theta)\,\mathrm{d}\theta
+\end{aligned}
+$$
+      </div>
+      <details class="math-source">
+        <summary>LaTeX source</summary>
+        <pre><code>$$
+\begin{aligned}
+p(\theta \mid \mathcal{D})
+&amp;= \frac{p(\mathcal{D} \mid \theta)\,p(\theta)}{p(\mathcal{D})} \\
+p(\mathcal{D})
+&amp;= \int p(\mathcal{D} \mid \theta)\,p(\theta)\,\mathrm{d}\theta
+\end{aligned}
+$$</code></pre>
+      </details>
+    </section>
+  </main>
+</body>
+</html>
