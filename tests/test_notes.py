@@ -47,7 +47,67 @@ Prices are $5 and $10.
         self.assertIn('$not_math$', html)
         self.assertIn('Prices are $5 and $10.', html)
         self.assertEqual(html.count('class="math inline"'), 1)
-        self.assertEqual(html.count('class="math block"'), 1)
+        self.assertEqual(html.count('<div class="math block'), 1)
+
+    def test_display_math_does_not_require_blank_lines(self):
+        html = render_markdown(r'''Before the equation:
+$$
+J = \mathbb{E}\left[\sum_{i=1}^{T} r_i\right]
+$$
+After the equation.
+
+```text
+$$
+not mathematics
+$$
+```
+''')
+        self.assertIn('<p>Before the equation:</p>', html)
+        self.assertIn(r'\[J = \mathbb{E}\left[\sum_{i=1}^{T} r_i\right]\]', html)
+        self.assertIn('<p>After the equation.</p>', html)
+        self.assertEqual(html.count('<div class="math block'), 1)
+        self.assertEqual(html.count('class="math block math-unframed"'), 1)
+        self.assertIn('not mathematics', html)
+        self.assertIn('<code class="language-text">', html)
+
+        framed = render_markdown('Before.\n\n$$\nx+y\n$$\n')
+        self.assertIn('class="math block"', framed)
+        self.assertNotIn('math-unframed', framed)
+
+        labelled = render_markdown(
+            'Before.\n$$\nx+y\n$$ (policy-objective)\nAfter.\n\n$$\ny+z\n$$\n')
+        self.assertIn(
+            '<div id="policy-objective" class="math block math-unframed">', labelled)
+        self.assertIn('<p>After.</p>', labelled)
+        self.assertEqual(labelled.count('<div'), 2)
+
+    def test_mermaid_fences_render_as_diagrams(self):
+        html = render_markdown('''```mermaid
+flowchart LR
+    A[Observations] --> B[Policy]
+```
+
+```python
+print("still code")
+```
+''')
+        self.assertIn('<figure class="mermaid-figure">', html)
+        self.assertIn('<pre class="mermaid" role="img" aria-label="Mermaid diagram">', html)
+        self.assertIn('A[Observations] --&gt; B[Policy]', html)
+        self.assertIn('<summary>Diagram source</summary>', html)
+        self.assertIn('<code class="language-python">', html)
+
+    def test_mermaid_scripts_load_only_on_diagram_pages(self):
+        self.note('diagram', body='```mermaid\nflowchart LR\nA --> B\n```')
+        self.note('plain', body='No diagram.')
+        build(self.root)
+        diagram = (self.root / 'notes/diagram.html').read_text()
+        plain = (self.root / 'notes/plain.html').read_text()
+        listing = (self.root / 'notes.html').read_text()
+        self.assertIn('assets/vendor/mermaid/mermaid.min.js', diagram)
+        self.assertIn('assets/mermaid.js', diagram)
+        self.assertNotIn('assets/vendor/mermaid/mermaid.min.js', plain)
+        self.assertNotIn('assets/vendor/mermaid/mermaid.min.js', listing)
 
     def test_drafts_and_stale_generated_files(self):
         source = self.note(draft='true')

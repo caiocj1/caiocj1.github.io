@@ -10,9 +10,26 @@
   --accent-dark: #284a3c;
   --accent-pale: #edf2eb;
   --white: #ffffff;
+  --header-background: rgba(252, 252, 249, 0.95);
   --serif: Georgia, "Times New Roman", serif;
   --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --page: 1080px;
+  --page: 1000px;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --paper: #151a17;
+  --paper-deep: #1a211d;
+  --surface: #1d2521;
+  --ink: #edf1ed;
+  --ink-soft: #bec8c0;
+  --muted: #8e9a92;
+  --line: #303b35;
+  --accent: #628f78;
+  --accent-dark: #9bc8b1;
+  --accent-pale: #202e27;
+  --header-background: rgba(21, 26, 23, 0.94);
+  color-scheme: dark;
 }
 
 *,
@@ -39,6 +56,7 @@ body {
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  transition: color 180ms ease, background-color 180ms ease;
 }
 
 main {
@@ -96,8 +114,9 @@ dd {
   z-index: 20;
   top: 0;
   border-bottom: 1px solid var(--line);
-  background: rgba(252, 252, 249, 0.95);
+  background: var(--header-background);
   backdrop-filter: blur(16px);
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 
 .nav-shell {
@@ -138,6 +157,53 @@ dd {
   align-items: stretch;
   overflow-x: auto;
   scrollbar-width: none;
+}
+
+.theme-toggle {
+  position: relative;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  align-self: center;
+  margin-left: 0.65rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink-soft);
+  background: var(--surface);
+  cursor: pointer;
+  font: inherit;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+  transform: rotate(8deg);
+}
+
+.theme-toggle-icon {
+  position: absolute;
+  font-size: 1rem;
+  line-height: 1;
+  transition: opacity 160ms ease, transform 180ms ease;
+}
+
+.theme-toggle-sun {
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.7);
+}
+
+:root[data-theme="dark"] .theme-toggle-moon {
+  opacity: 0;
+  transform: rotate(45deg) scale(0.7);
+}
+
+:root[data-theme="dark"] .theme-toggle-sun {
+  opacity: 1;
+  transform: rotate(0) scale(1);
 }
 
 .site-nav::-webkit-scrollbar {
@@ -198,6 +264,7 @@ dd {
   width: 168px;
   max-width: 100%;
   aspect-ratio: 1 / 1;
+  margin-inline: auto;
   margin-bottom: 1.5rem;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -322,7 +389,7 @@ dd {
 }
 
 .hero {
-  max-width: 680px;
+  max-width: 640px;
   padding-top: 0.35rem;
 }
 
@@ -360,7 +427,7 @@ dd {
 
 .hero h1 {
   margin-bottom: 2rem;
-  font-size: clamp(2.6rem, 4vw, 3.4rem);
+  font-size: clamp(2.2rem, 3.2vw, 2.8rem);
 }
 
 .page-intro h1,
@@ -374,6 +441,8 @@ dd {
   color: var(--ink-soft);
   font-size: 1.0625rem;
   line-height: 1.85;
+  hyphens: auto;
+  text-align: justify;
 }
 
 .hero-actions {
@@ -459,6 +528,13 @@ dd {
 
 .recent-section {
   padding-bottom: 2rem;
+}
+
+.home-publications {
+  max-width: 640px;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
 }
 
 .text-link {
@@ -548,7 +624,7 @@ dd {
 
 .page-intro > p:last-child,
 .publications-intro > div > p:last-child {
-  max-width: 720px;
+  max-width: 680px;
   margin-bottom: 0;
   color: var(--ink-soft);
   font-size: clamp(1.05rem, 1.7vw, 1.25rem);
@@ -675,7 +751,7 @@ dd {
 }
 
 .publication-summary {
-  max-width: 760px;
+  max-width: 720px;
   color: var(--ink-soft);
   font-size: 0.92rem;
 }
@@ -698,7 +774,7 @@ dd {
 }
 
 .notes-intro {
-  max-width: 900px;
+  max-width: 820px;
 }
 
 .notes-empty {
@@ -822,7 +898,7 @@ dd {
 
 /* Markdown notes share the site's typography with a wider reading column. */
 .note-page {
-  max-width: 960px;
+  max-width: 880px;
 }
 
 .note-intro {
@@ -928,6 +1004,53 @@ dd {
   border-left: 2px solid var(--accent);
 }
 
+.mermaid-figure {
+  margin: 2.25rem 0;
+}
+
+.note-body pre.mermaid {
+  display: grid;
+  min-height: 9rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  place-items: center;
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.note-body pre.mermaid svg {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.note-body pre.mermaid-error {
+  place-items: start;
+  border-color: var(--accent);
+}
+
+.mermaid-source {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.mermaid-source summary {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.mermaid-source summary:hover {
+  color: var(--accent-dark);
+}
+
+.mermaid-source pre {
+  margin-top: 0.75rem;
+}
+
 .note-body table {
   width: 100%;
   border-collapse: collapse;
@@ -942,7 +1065,7 @@ dd {
 }
 
 .note-list {
-  max-width: 960px;
+  max-width: 880px;
 }
 
 .note-list-item {
@@ -973,6 +1096,12 @@ dd {
   font-size: 1.08em;
 }
 
+.note-body .katex,
+.math-preview .katex {
+  color: var(--ink);
+  font-size: 1.14em;
+}
+
 .katex-display {
   max-width: 100%;
   margin: 1.5rem 0;
@@ -982,7 +1111,7 @@ dd {
 }
 
 .math-preview {
-  max-width: 760px;
+  max-width: 720px;
 }
 
 .math-preview .page-intro h1 {
@@ -1024,6 +1153,12 @@ dd {
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--surface);
+}
+
+.note-body .math.block.math-unframed {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .math-source {
@@ -1182,10 +1317,13 @@ dd {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hero h1,
   .page-intro h1,
   .not-found h1 {
     font-size: clamp(2.35rem, 11vw, 3.5rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.15rem, 9vw, 2.8rem);
   }
 
   .publications-intro,
@@ -1297,6 +1435,19 @@ dd {
 }
 
 @media print {
+  :root,
+  :root[data-theme="dark"] {
+    --paper: #ffffff;
+    --surface: #ffffff;
+    --ink: #252c28;
+    --ink-soft: #555e58;
+    --muted: #70786f;
+    --line: #d9ddd5;
+    --accent: #376451;
+    --accent-dark: #284a3c;
+    color-scheme: light;
+  }
+
   .site-header,
   .hero-actions,
   .profile-links {

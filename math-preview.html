@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A preview of mathematical typesetting for Caio Azevedo’s research notes.">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#f3f2ec">
+  <meta name="theme-color" content="#151a17">
   <title>LaTeX preview — Caio Azevedo</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script src="assets/theme.js"></script>
   <link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
   <link rel="stylesheet" href="styles.css">
   <script defer src="assets/vendor/katex/katex.min.js"></script>
@@ -27,6 +28,10 @@
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="publications.html">Publications</a>
         <a class="nav-link active" href="notes.html" aria-current="page">Notes</a>
+        <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true">☾</span>
+          <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true">☀</span>
+        </button>
       </nav>
     </div>
   </header>

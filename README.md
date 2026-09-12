@@ -35,7 +35,21 @@ draft: true
 
 `title`, `date`, and `description` are required. `draft` is a boolean; it defaults to `true` if omitted. Dates use `YYYY-MM-DD`. Use `draft: true` while writing and `draft: false` when the article is ready for a publication build.
 
-The converter preserves your wording and supports headings, lists, emphasis, quotations, fenced code, tables, footnotes, standard Markdown links/images, and `$...$` / `$$...$$` mathematics. The page title comes from the properties, so body headings are shifted down one level. Notes use a 960px maximum reading width; the separate math preview remains 760px wide.
+The converter preserves your wording and supports headings, lists, emphasis, quotations, fenced code, tables, footnotes, standard Markdown links/images, and `$...$` / `$$...$$` mathematics. The page title comes from the properties, so body headings are shifted down one level. Notes use an 880px maximum reading width; the separate math preview remains 720px wide.
+
+Mermaid diagrams use fenced blocks with the `mermaid` language. They render in both light and dark mode, while an expandable copy of the diagram source remains available below the result:
+
+````markdown
+```mermaid
+flowchart LR
+    A[Observations] --> B[Policy]
+    B --> C[Actions]
+    C --> D[Environment]
+    D --> A
+```
+````
+
+Obsidian renders the same syntax in Reading view. Invalid diagrams remain readable as source instead of breaking the rest of the note.
 
 Keep editing the Markdown files. `notes.html` and `notes/**/*.html` are generated; shared markup lives in `templates/notes-page.html`, and appearance lives in `styles.css`. Regeneration also removes obsolete generated pages after a note is renamed, removed, or excluded as a draft. Hand-written article HTML is never overwritten.
 
@@ -99,6 +113,8 @@ Use `\(...\)` for inline equations and `\[...\]` or `$$...$$` for display equati
   \]
 </div>
 ```
+
+In Markdown notes, standalone `$$` delimiter lines are treated as display mathematics even when there is no empty line before or after them. A blank line before the opening `$$` gives the equation a bordered panel; placing the opening `$$` directly after the preceding paragraph renders the equation without a border. Dollar delimiters inside fenced code blocks remain literal.
 
 In hand-written HTML, single dollar signs are left alone so ordinary prices are not mistaken for math. In Markdown notes, the converter recognizes `$...$` and converts it into the inline delimiters supported by the renderer; escape a literal dollar sign as `\$` when needed. Expressions inside `<pre>` and `<code>` remain literal. In HTML source, escape `&` as `&amp;` and `<` as `&lt;`, including inside equations. Write LaTeX backslashes directly in HTML; no extra JavaScript escaping is needed.
 
