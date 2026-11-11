@@ -1,15 +1,16 @@
 /* Colour names are shared with assets/mermaid.js, which reads them for diagrams. */
 :root {
   --paper: #ffffff;
-  --paper-deep: #eceeeb;
-  --surface: #f5f6f4;
-  --ink: #171a18;
-  --ink-soft: #4d544f;
-  --muted: #6b726d;
-  --line: #e4e6e2;
-  --accent: #2e6b53;
-  --accent-dark: #1f4d3b;
-  --accent-pale: #e9f1ec;
+  --paper-deep: #ebedf1;
+  --surface: #f4f5f8;
+  --ink: #16181d;
+  --ink-soft: #4b515c;
+  --muted: #69707c;
+  --line: #e3e5ea;
+  --accent: #1e3fa8;
+  --accent-dark: #172f80;
+  --accent-pale: #e8edfa;
+  --selection: #1e3fa8;
   --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --page: 760px;
@@ -20,15 +21,15 @@
 
 :root[data-theme="dark"] {
   --paper: #121413;
-  --paper-deep: #1f2321;
-  --surface: #1a1d1b;
-  --ink: #eceeec;
-  --ink-soft: #b4bab6;
-  --muted: #868d88;
-  --line: #2a2e2c;
-  --accent: #7cc0a0;
-  --accent-dark: #a5d6bd;
-  --accent-pale: #1c2a23;
+  --paper-deep: #1e222a;
+  --surface: #181b21;
+  --ink: #eceef2;
+  --ink-soft: #b2b8c3;
+  --muted: #848b97;
+  --line: #282c35;
+  --accent: #5b8af0;
+  --accent-dark: #8fb0f7;
+  --accent-pale: #182238;
   color-scheme: dark;
 }
 
@@ -95,8 +96,8 @@ h1 {
 }
 
 ::selection {
-  color: var(--paper);
-  background: var(--accent);
+  color: #ffffff;
+  background: var(--selection);
 }
 
 :focus-visible {
@@ -843,15 +844,15 @@ main {
   :root,
   :root[data-theme="dark"] {
     --paper: #ffffff;
-    --paper-deep: #eceeeb;
+    --paper-deep: #ebedf1;
     --surface: #ffffff;
-    --ink: #171a18;
-    --ink-soft: #4d544f;
-    --muted: #6b726d;
-    --line: #d9dcd7;
-    --accent: #2e6b53;
-    --accent-dark: #1f4d3b;
-    --accent-pale: #e9f1ec;
+    --ink: #16181d;
+    --ink-soft: #4b515c;
+    --muted: #69707c;
+    --line: #d8dbe1;
+    --accent: #1e3fa8;
+    --accent-dark: #172f80;
+    --accent-pale: #e8edfa;
     color-scheme: light;
   }
 
