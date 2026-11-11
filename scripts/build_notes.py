@@ -202,12 +202,10 @@ def build(root=ROOT, include_drafts=False):
         <p class="note-meta"><time datetime="{note.date.isoformat()}">{date_label(note.date)}</time>{label}</p>
         <h2><a href="{quote(url)}">{escape(note.title)}</a></h2>
         <p>{escape(note.description)}</p>
-        <a class="text-link" href="{quote(url)}">Read note <span aria-hidden="true">→</span></a>
       </article>''')
     listing = '\n'.join(entries) if entries else '<p class="note-empty-message">No posts yet.</p>'
     content = f'''  <main id="main-content" class="page-shell inner-page notes-page">
     <header class="page-intro notes-intro">
-      <p class="eyebrow"><span></span> Notes</p>
       <h1>Notes</h1>
     </header>
     <section class="note-list" aria-label="Notes">
