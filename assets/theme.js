@@ -1,6 +1,6 @@
 (() => {
   const storageKey = 'caio-color-theme';
-  const themeColor = { light: '#ffffff', dark: '#121413' };
+  const themeColor = { light: '#ffffff', dark: '#121317' };
 
   const storedTheme = () => {
     try {
